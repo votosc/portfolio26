@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Soto | Power Platform Expert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Vollkorn:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Vintage green palette */
+            --cream: #F5F1E8;
+            --warm-white: #FBF8F3;
+            --sage: #8BA888;
+            --forest: #5B7553;
+            --moss: #6B8E6A;
+            --olive: #8B9D70;
+            --terracotta: #C97C5D;
+            --rust: #B85C50;
+            --gold: #D4A574;
+            --warm-brown: #8B6F47;
+            --soft-black: #2C3028;
+            --mint: #A8C9A0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--soft-black);
+            line-height: 1.7;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 111, 71, 0.02) 2px, rgba(139, 111, 71, 0.02) 4px);
+        }
+
+        /* Decorative elements */
+        .leaf-decoration {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.08;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--moss) 50%, var(--sage) 100%);
+            color: var(--warm-white);
+            padding: 1.5rem 5%;
+            border-bottom: 4px solid var(--terracotta);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--warm-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--warm-white);
+            padding: 6rem 5%;
+            position: relative;
+            border-bottom: 3px solid var(--sage);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Vollkorn', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        h1 .green-text {
+            color: var(--forest);
+        }
+
+        h1 .orange-text {
+            color: var(--terracotta);
+        }
+
+        .hero-about {
+            font-size: 1.15rem;
+            color: var(--warm-brown);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.4s ease;
+            display: inline-block;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: var(--forest);
+            color: white;
+            border: 3px solid var(--forest);
+        }
+
+        .btn-primary:hover {
+            background: var(--moss);
+            border-color: var(--moss);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--forest);
+            border: 3px solid var(--sage);
+        }
+
+        .btn-secondary:hover {
+            background: var(--sage);
+            color: white;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(139, 168, 136, 0.3);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-visual {
+            background: linear-gradient(135deg, var(--sage), var(--mint));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 4px solid var(--forest);
+            box-shadow: 8px 8px 0 var(--gold);
+            text-align: center;
+        }
+
+        .experience-badge {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 3px solid var(--forest);
+            margin-bottom: 2rem;
+        }
+
+        .experience-text {
+            font-family: 'Vollkorn', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--forest);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-label {
+            color: var(--warm-brown);
+            font-size: 1rem;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cert-badge {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid var(--forest);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+        }
+
+        .cert-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--forest);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* Projects Section */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: var(--terracotta);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Vollkorn', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--forest);
+            margin-bottom: 2rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--warm-brown);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--warm-white);
+            border: 3px solid var(--sage);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 5px 5px 0 rgba(139, 168, 136, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 rgba(139, 168, 136, 0.3);
+            border-color: var(--forest);
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--sage);
+            object-fit: cover;
+            height: 250px;
+        }
+
+        .project-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--sage), var(--moss));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--forest);
+        }
+
+        .project-card h3 {
+            font-family: 'Vollkorn', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--forest);
+        }
+
+        .project-card p {
+            color: var(--warm-brown);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-stats {
+            background: rgba(139, 168, 136, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--sage);
+        }
+
+        .project-stats strong {
+            color: var(--forest);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            background: var(--sage);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--warm-white);
+            border-radius: 30px;
+            padding: 4rem;
+            border: 4px solid var(--sage);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: white;
+            border: 3px solid var(--sage);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0 rgba(139, 168, 136, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 0 rgba(139, 168, 136, 0.3);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--sage), var(--mint));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 2px solid var(--forest);
+            margin: 0 auto 1rem;
+        }
+
+        .skill-category h3 {
+            font-family: 'Vollkorn', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--forest);
+        }
+
+        .skill-description {
+            color: var(--warm-brown);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #FFF9F0, #FFF3E0);
+            border-radius: 25px;
+            padding: 4rem;
+            border: 3px solid var(--gold);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border: 3px solid var(--sage);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 4px 4px 0 rgba(212, 165, 116, 0.2);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--gold);
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            color: var(--warm-brown);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--forest);
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-role {
+            color: var(--terracotta);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 5rem 5% 3rem;
+        }
+
+        .contact h2 {
+            font-family: 'Vollkorn', serif;
+            font-size: 2.5rem;
+            color: var(--forest);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-description {
+            font-size: 1.1rem;
+            color: var(--warm-brown);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: var(--forest);
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sage), var(--mint));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 3px solid var(--forest);
+        }
+
+        .contact-item a {
+            color: var(--forest);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-item a:hover {
+            color: var(--terracotta);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest);
+            color: var(--cream);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 4px solid var(--terracotta);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-family: 'Vollkorn', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-copyright {
+            margin-top: 1.5rem;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-copyright a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                padding: 3rem 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 4rem 5%;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative elements -->
+    <div class="leaf-decoration" style="top: 10%; left: 5%;">🍃</div>
+    <div class="leaf-decoration" style="top: 30%; right: 8%; animation-delay: 3s;">🌿</div>
+    <div class="leaf-decoration" style="bottom: 20%; left: 10%; animation-delay: 6s;">🍃</div>
+
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span class="green-text">Building</span> <span class="orange-text">Smart<br>Solutions</span><br>
+                    <span class="green-text">for Modern<br>Businesses</span>
+                </h1>
+                <p class="hero-about">
+                    Hi, I'm Carlos, a Microsoft-certified Power Platform Expert who builds automation solutions 
+                    people actually use. My IT and cybersecurity background means I don't just understand the 
+                    technology, I understand the risks, users frustrations and that's when my presence comes in. 
+                    <strong>Let's automate!</strong>
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-visual">
+                    <div class="experience-badge">
+                        <div class="experience-text">10+</div>
+                        <div class="experience-label">Years of Experience</div>
+                    </div>
+                    
+                    <div class="certifications-grid">
+                        <div class="cert-badge">
+                            <div class="cert-icon">🎓</div>
+                            <div class="cert-name">Google IT Support</div>
+                        </div>
+                        <div class="cert-badge">
+                            <div class="cert-icon">☁️</div>
+                            <div class="cert-name">Azure Fundamentals</div>
+                        </div>
+                        <div class="cert-badge">
+                            <div class="cert-icon">⚡</div>
+                            <div class="cert-name">PL-900</div>
+                        </div>
+                        <div class="cert-badge">
+                            <div class="cert-icon">🚀</div>
+                            <div class="cert-name">PL-500</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-header">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-description">
+                These selected projects reflect my commitment to bridging technology and people—solving 
+                real problems with clarity and a focus on what truly matters: empowering teams to work 
+                smarter, not harder.
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1: SharePoint Infrastructure -->
+            <div class="project-card">
+                <div class="project-icon">🌐</div>
+                <h3>SharePoint Infrastructure & Training</h3>
+                <p>
+                    Designed, implemented, and trained global teams on a centralized SharePoint intranet 
+                    to replace scattered storage systems across 36 countries, enabling consistent document 
+                    management for thousands of projects.
+                </p>
+                
+                <div class="project-stats">
+                    <strong>Impact:</strong> Unified document management across a global NGO, improved 
+                    collaboration, reduced reliance on local storage, and empowered non-technical staff 
+                    worldwide to confidently manage content.
+                </div>
+
+                <img src="images/sharepoint_project.png" alt="SharePoint Infrastructure" class="project-image">
+
+                <p><strong>My Role:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                    <li>Created and structured SharePoint sites and hub sites for global use</li>
+                    <li>Delivered 4 nationwide training sessions in Switzerland + Spanish sessions for Latin America</li>
+                    <li>Developed interactive PDF manuals for administrators and users</li>
+                </ul>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">SharePoint Online</span>
+                    <span class="tech-tag">Microsoft 365</span>
+                    <span class="tech-tag">PowerPoint</span>
+                    <span class="tech-tag">Video Tutorials</span>
+                </div>
+            </div>
+
+            <!-- Project 2: Ticketing System -->
+            <div class="project-card">
+                <div class="project-icon">🎫</div>
+                <h3>Ticketing System Implementation & Knowledge Base</h3>
+                <p>
+                    Implemented the company's first structured ticketing system and created a Knowledge 
+                    Base to replace unorganized, email-based IT support, enabling both IT staff and users 
+                    to quickly find and track solutions.
+                </p>
+                
+                <div class="project-stats">
+                    <strong>Impact:</strong> Centralized IT support, improved communication, ensured ticket 
+                    traceability, reduced resolution times, and saved IT resources by enabling users to 
+                    self-resolve common issues.
+                </div>
+
+                <img src="images/ticketing_project.png" alt="Ticketing System" class="project-image">
+
+                <p><strong>My Role:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                    <li>Deployed and administered the ticketing system in SharePoint</li>
+                    <li>Created automated workflows and managed permissions</li>
+                    <li>Built a searchable Knowledge Base with step-by-step guides</li>
+                </ul>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">SharePoint Online</span>
+                    <span class="tech-tag">Power Automate</span>
+                    <span class="tech-tag">Microsoft Forms</span>
+                    <span class="tech-tag">Video Tutorials</span>
+                </div>
+            </div>
+
+            <!-- Project 3: Power Platform Automation -->
+            <div class="project-card">
+                <div class="project-icon">⚡</div>
+                <h3>Power Platform Automation</h3>
+                <p>
+                    Designed and implemented automated workflows to avoid time-consuming manual processes, 
+                    created user-friendly apps to bring teams together and brainstorm ideas through simple 
+                    yet powerful automation.
+                </p>
+                
+                <div class="project-stats">
+                    <strong>Impact:</strong> Saved hundreds of manual hours annually, improved approval 
+                    turnaround times, ensured accurate record-keeping, and increased staff satisfaction 
+                    through faster, more transparent processes.
+                </div>
+
+                <img src="images/powerplatform_project.png" alt="Power Platform Automation" class="project-image">
+
+                <p><strong>My Role:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                    <li>Built Power Apps forms for data collection</li>
+                    <li>Developed end-to-end automated flows in Power Automate</li>
+                    <li>Connected workflows to SharePoint for secure data storage</li>
+                    <li>Designed dashboards for real-time monitoring</li>
+                </ul>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">Power Apps</span>
+                    <span class="tech-tag">Power Automate</span>
+                    <span class="tech-tag">SharePoint Lists</span>
+                    <span class="tech-tag">Excel</span>
+                    <span class="tech-tag">Azure Functions</span>
+                </div>
+            </div>
+
+            <!-- Project 4: Windows 11 Migration -->
+            <div class="project-card">
+                <div class="project-icon">💻</div>
+                <h3>Windows 11 Enterprise Migration</h3>
+                <p>
+                    Migrated 300+ users across Switzerland to Windows 11 Enterprise via Autopilot with 
+                    progressive rollout, achieving minimal downtime and streamlined post-migration 
+                    software deployment.
+                </p>
+                
+                <div class="project-stats">
+                    <strong>Impact:</strong> Migrated 300+ devices with zero downtime, cut deployment 
+                    time to under 30 minutes, enabled remote software management, standardized the 
+                    environment for better security, and improved IT efficiency.
+                </div>
+
+                <img src="images/windows11_project.png" alt="Windows 11 Migration" class="project-image">
+
+                <p><strong>My Role:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                    <li>Prepared detailed migration and installation guides</li>
+                    <li>Performed installations and pre-migration testing</li>
+                    <li>Conducted IT staff training sessions</li>
+                    <li>Developed comprehensive KB articles</li>
+                </ul>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">Windows 11</span>
+                    <span class="tech-tag">Azure AD (Entra)</span>
+                    <span class="tech-tag">Microsoft Intune</span>
+                    <span class="tech-tag">Autopilot</span>
+                    <span class="tech-tag">SharePoint</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="section-header">
+            <h2 class="section-title">My Tech Stack</h2>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-icon">☁️</div>
+                <h3>Microsoft 365</h3>
+                <p class="skill-description">
+                    Productivity, security, and collaboration suite
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">🔷</div>
+                <h3>Azure</h3>
+                <p class="skill-description">
+                    Cloud platform for apps and automation
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">📁</div>
+                <h3>SharePoint</h3>
+                <p class="skill-description">
+                    Document workflows and intranets
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">⚡</div>
+                <h3>Power Platform</h3>
+                <p class="skill-description">
+                    Low-code apps and automations
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">📱</div>
+                <h3>Intune</h3>
+                <p class="skill-description">
+                    Device management and security
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">💻</div>
+                <h3>Systems</h3>
+                <p class="skill-description">
+                    Windows, Server, Mac environments
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">🔒</div>
+                <h3>Cybersecurity</h3>
+                <p class="skill-description">
+                    Firewalls, DNS, network security
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">🤖</div>
+                <h3>Automation</h3>
+                <p class="skill-description">
+                    Flows, apps, and process mastery
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">🤝</div>
+                <h3>Collaboration</h3>
+                <p class="skill-description">
+                    Teams, OneDrive, Outlook
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-icon">🖨️</div>
+                <h3>Hardware</h3>
+                <p class="skill-description">
+                    Printers and meeting devices
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="section-header">
+            <div class="section-label">Testimonials</div>
+            <h2 class="section-title">What People Say</h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "I had the pleasure of supervising Carlos as a member of my team, and I highly 
+                    recommend him. Carlos is a reliable and positive individual, consistently maintaining 
+                    an optimistic outlook even in stressful situations. His willingness to embrace new 
+                    challenges and continuously improve himself and our processes was truly commendable."
+                </p>
+                <p class="testimonial-author">Ivana Polonijo</p>
+                <p class="testimonial-role">Operations Manager, Sharkgate Cybersecurity UK</p>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "Carlos did a phenomenal job translating my book! He was reasonable in cost, extremely 
+                    thorough and completed the job in a short period of time. I highly recommend him. It is 
+                    difficult to find people who are as professional as he is."
+                </p>
+                <p class="testimonial-author">Judson Somerville, MD</p>
+                <p class="testimonial-role">Author of "The Optimal Dose: Restore Your Health With The Power of Vitamin D3"</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Let's Work Together</h2>
+        <p class="contact-description">
+            Based in Zürich and looking for flexible opportunities where I can leverage my Power 
+            Platform expertise to drive digital transformation. Open to hybrid or remote roles.
+        </p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-item-icon">📧</div>
+                <a href="mailto:info@csoto.ch">info@csoto.ch</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-icon">📱</div>
+                <a href="tel:+41766087458">+41 76 608 74 58</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Carlos Soto | Power Platform Expert</p>
+            <div class="footer-links">
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p class="footer-copyright">
+                © 2026 <a href="https://csoto.ch">csoto.ch</a> | Zürich, Switzerland
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax effect for decorative leaves
+        window.addEventListener('scroll', () => {
+            const leaves = document.querySelectorAll('.leaf-decoration');
+            const scrolled = window.pageYOffset;
+            
+            leaves.forEach((leaf, index) => {
+                const speed = 0.3 + (index * 0.1);
+                leaf.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add entrance animation to cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initially hide cards
+        document.querySelectorAll('.project-card, .skill-category, .testimonial-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
