@@ -318,35 +318,43 @@
             line-height: 1.8;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+        /* CAROUSEL STYLES */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+
+        .projects-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
 
         .project-card {
+            min-width: 100%;
             background: var(--warm-white);
             border: 3px solid var(--sage);
             border-radius: 20px;
             padding: 2.5rem;
-            transition: all 0.4s ease;
-            position: relative;
             box-shadow: 5px 5px 0 rgba(139, 168, 136, 0.2);
-        }
-
-        .project-card:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 8px 8px 0 rgba(139, 168, 136, 0.3);
-            border-color: var(--forest);
         }
 
         .project-image {
             width: 100%;
+            max-width: 600px;
             border-radius: 12px;
-            margin-bottom: 1.5rem;
+            margin: 1.5rem auto;
+            display: block;
             border: 2px solid var(--sage);
-            object-fit: cover;
-            height: 250px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .project-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: var(--terracotta);
         }
 
         .project-icon {
@@ -401,6 +409,60 @@
             color: white;
             border-radius: 20px;
             font-weight: 600;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            background: var(--forest);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover:not(:disabled) {
+            background: var(--moss);
+            transform: scale(1.1);
+        }
+
+        .carousel-btn:disabled {
+            background: var(--sage);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.7rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--sage);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--terracotta);
+            transform: scale(1.3);
         }
 
         /* Skills Section */
@@ -641,10 +703,6 @@
                 gap: 1.5rem;
             }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
             .skills {
                 padding: 3rem 2rem;
             }
@@ -733,20 +791,20 @@
                     
                     <div class="certifications-grid">
                         <div class="cert-badge">
-                            <div class="cert-icon">🎓</div>
+                            <img src="images/certifications/Googlelogo.png" alt="Google IT Support" style="width: 50px; height: 50px; object-fit: contain;">
                             <div class="cert-name">Google IT Support</div>
                         </div>
                         <div class="cert-badge">
-                            <div class="cert-icon">☁️</div>
-                            <div class="cert-name">Azure Fundamentals</div>
+                            <img src="images/certifications/Azurelogo.png" alt="AZ-900" style="width: 50px; height: 50px; object-fit: contain;">
+                            <div class="cert-name">AZ-900</div>
                         </div>
                         <div class="cert-badge">
-                            <div class="cert-icon">⚡</div>
+                            <img src="images/certifications/PL900logo.png" alt="PL-900" style="width: 50px; height: 50px; object-fit: contain;">
                             <div class="cert-name">PL-900</div>
                         </div>
                         <div class="cert-badge">
-                            <div class="cert-icon">🚀</div>
-                            <div class="cert-name">PL-500</div>
+                            <img src="images/certifications/GoogleAdslogo.jpeg" alt="Google Ads" style="width: 50px; height: 50px; object-fit: contain;">
+                            <div class="cert-name">Google Ads</div>
                         </div>
                     </div>
                 </div>
@@ -765,141 +823,290 @@
             </p>
         </div>
 
-        <div class="projects-grid">
-            <!-- Project 1: SharePoint Infrastructure -->
-            <div class="project-card">
-                <div class="project-icon">🌐</div>
-                <h3>SharePoint Infrastructure & Training</h3>
-                <p>
-                    Designed, implemented, and trained global teams on a centralized SharePoint intranet 
-                    to replace scattered storage systems across 36 countries, enabling consistent document 
-                    management for thousands of projects.
-                </p>
-                
-                <div class="project-stats">
-                    <strong>Impact:</strong> Unified document management across a global NGO, improved 
-                    collaboration, reduced reliance on local storage, and empowered non-technical staff 
-                    worldwide to confidently manage content.
+        <!-- CAROUSEL -->
+        <div class="carousel-container">
+            <div class="projects-carousel" id="carousel">
+               <!-- Project 1: SharePoint Infrastructure -->
+                <div class="project-card">
+                    <div class="project-icon">🌐</div>
+                    <h3>SharePoint Infrastructure & Training</h3>
+                    <p>
+                        Designed, implemented, and trained global teams on a centralized SharePoint intranet 
+                        to replace scattered storage systems across 36 countries, enabling consistent document 
+                        management for thousands of projects.
+                    </p>
+                    
+                    <div class="project-stats">
+                        <strong>Impact:</strong> Unified document management across a global NGO, improved 
+                        collaboration, reduced reliance on local storage, and empowered non-technical staff 
+                        worldwide to confidently manage content.
+                    </div>
+
+                    <a href="images/projects/Sharepoint_project.png" target="_blank">
+                        <img src="images/projects/Sharepoint_project.png" alt="SharePoint Infrastructure" class="project-image">
+                    </a>
+
+                    <p><strong>My Role:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>Created and structured SharePoint sites and hub sites for global use</li>
+                        <li>Delivered 4 nationwide training sessions in Switzerland + Spanish sessions for Latin America</li>
+                        <li>Developed interactive PDF manuals for administrators and users</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">SharePoint Online</span>
+                        <span class="tech-tag">Microsoft 365</span>
+                        <span class="tech-tag">PowerPoint</span>
+                        <span class="tech-tag">Video Tutorials</span>
+                    </div>
                 </div>
 
-                <img src="images/sharepoint_project.png" alt="SharePoint Infrastructure" class="project-image">
+                <!-- Project 2: IT Support Chatbot -->
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3>IT Support Chatbot</h3>
+                    <p>
+                        Built an AI-powered chatbot using Copilot Studio for common IT support requests, 
+                        providing 24/7 self-service support and reducing the IT team's workload on 
+                        repetitive issues.
+                    </p>
+                    
+                    <div class="project-stats">
+                        <strong>Impact:</strong> Reduced IT ticket volume by 40%, resolved 60% of common 
+                        requests instantly without human intervention, provided 24/7 support availability. 
+                        IT staff could focus on complex problems, and improved user satisfaction scores.
+                    </div>
 
-                <p><strong>My Role:</strong></p>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
-                    <li>Created and structured SharePoint sites and hub sites for global use</li>
-                    <li>Delivered 4 nationwide training sessions in Switzerland + Spanish sessions for Latin America</li>
-                    <li>Developed interactive PDF manuals for administrators and users</li>
-                </ul>
+                    <p><strong>Challenges Solved:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>IT team overwhelmed with high ticket volume</li>
+                        <li>Many requests were repetitive and simple (password resets, software access, VPN setup)</li>
+                        <li>No 24/7 support coverage</li>
+                        <li>Users frustrated with delayed responses</li>
+                    </ul>
 
-                <div class="tech-stack">
-                    <span class="tech-tag">SharePoint Online</span>
-                    <span class="tech-tag">Microsoft 365</span>
-                    <span class="tech-tag">PowerPoint</span>
-                    <span class="tech-tag">Video Tutorials</span>
+                    <p><strong>My Role:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>Designed conversational flows in Copilot Studio for top 15 IT request types</li>
+                        <li>Integrated AI Builder models to understand user intent automatically</li>
+                        <li>Connected bot to SharePoint Knowledge Base for dynamic answers</li>
+                        <li>Implemented escalation logic to route complex issues to human agents</li>
+                        <li>Built analytics dashboard showing resolution rates and user satisfaction</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Power Virtual Agents</span>
+                        <span class="tech-tag">AI Builder</span>
+                        <span class="tech-tag">Dataverse</span>
+                        <span class="tech-tag">Power Automate</span>
+                        <span class="tech-tag">SharePoint</span>
+                        <span class="tech-tag">Power BI</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: Power Platform Governance -->
+                <div class="project-card">
+                    <div class="project-icon">🛡️</div>
+                    <h3>Power Platform Governance and DLPs</h3>
+                    <p>
+                        Established comprehensive governance for an NGO's Power Platform environment—implementing 
+                        and adjusting DLP policies, deploying the CoE toolkit, and creating structured ALM 
+                        practices resulting in a secure and compliant environment.
+                    </p>
+                    
+                    <div class="project-stats">
+                        <strong>Impact:</strong> Secured data through DLP policies preventing unauthorized 
+                        sharing; created organized solutions groups and gained visibility into 10+ apps and 
+                        25+ flows; reduced production incidents by 40%.
+                    </div>
+
+                    <p><strong>Challenges Solved:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>No DLP policies or oversight</li>
+                        <li>Uncontrolled solution development</li>
+                        <li>Sensitive data exposure risks</li>
+                        <li>Zero visibility into platform usage</li>
+                        <li>No development lifecycle practices</li>
+                    </ul>
+
+                    <p><strong>My Role:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>Assessed environment and identified security gaps</li>
+                        <li>Designed tiered DLP policies across Dev, Test, and Production environments</li>
+                        <li>Deployed and configured the CoE Starter Kit with automated monitoring</li>
+                        <li>Established ALM practices including environment strategy</li>
+                        <li>Created governance documentation and maker onboarding program</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Power Platform Admin Center</span>
+                        <span class="tech-tag">DLP Policies</span>
+                        <span class="tech-tag">CoE Starter Kit</span>
+                        <span class="tech-tag">Power Automate</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">SharePoint</span>
+                    </div>
+                </div>
+
+               <!-- Project 4: Employee Onboarding -->
+                <div class="project-card">
+                    <div class="project-icon">👥</div>
+                    <h3>Automated Employee Onboarding System</h3>
+                    <p>
+                        Designed and implemented an onboarding workflow to fix gaps between HR and IT teams, 
+                        reducing onboarding time from 5 days to under 2 hours while ensuring consistent 
+                        execution across all departments.
+                    </p>
+                    
+                    <div class="project-stats">
+                        <strong>Impact:</strong> Reduced onboarding time by 60%, eliminated missed steps through 
+                        automation, improved communication between HR and IT departments so they can focus on 
+                        strategy work, and ensured compliance with consistent documentation.
+                    </div>
+
+                    <p><strong>Challenges Solved:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>No standardized onboarding process existed</li>
+                        <li>HR and IT teams worked using emails and spreadsheets</li>
+                        <li>Critical steps were frequently missed or delayed</li>
+                        <li>New employees often waited days for account setup and equipment</li>
+                    </ul>
+
+                    <p><strong>My Role:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>Built a Canvas app for HR to submit new hire requests</li>
+                        <li>Developed automated flows to route tasks to appropriate teams</li>
+                        <li>Integrated with Entra ID for automatic account provisioning</li>
+                        <li>Connected to SharePoint to generate employee documentation automatically</li>
+                        <li>Built a tracking dashboard showing real-time onboarding status</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Power Apps</span>
+                        <span class="tech-tag">Power Automate</span>
+                        <span class="tech-tag">SharePoint</span>
+                        <span class="tech-tag">Dataverse</span>
+                        <span class="tech-tag">Entra ID</span>
+                        <span class="tech-tag">Excel</span>
+                    </div>
+                </div>
+
+
+                <!-- Project 5: Ticketing System -->
+                <div class="project-card">
+                    <div class="project-icon">🎫</div>
+                    <h3>Ticketing System Implementation & Knowledge Base</h3>
+                    <p>
+                        Implemented the company's first structured ticketing system and created a Knowledge 
+                        Base to replace unorganized, email-based IT support, enabling both IT staff and users 
+                        to quickly find and track solutions.
+                    </p>
+                    
+                    <div class="project-stats">
+                        <strong>Impact:</strong> Centralized IT support, improved communication, ensured ticket 
+                        traceability, reduced resolution times, and saved IT resources by enabling users to 
+                        self-resolve common issues.
+                    </div>
+
+                    <a href="images/projects/Ticketying_project.png" target="_blank">
+                        <img src="images/projects/Ticketying_project.png" alt="Ticketing System" class="project-image">
+                    </a>
+
+                    <p><strong>My Role:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>Deployed and administered the ticketing system in SharePoint</li>
+                        <li>Created automated workflows and managed permissions</li>
+                        <li>Built a searchable Knowledge Base with step-by-step guides</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">SharePoint Online</span>
+                        <span class="tech-tag">Power Automate</span>
+                        <span class="tech-tag">Microsoft Forms</span>
+                        <span class="tech-tag">Video Tutorials</span>
+                    </div>
+                </div>
+
+                <!-- Project 6: Power Platform Automation -->
+                <div class="project-card">
+                    <div class="project-icon">⚡</div>
+                    <h3>Power Platform Automation</h3>
+                    <p>
+                        Designed and implemented automated workflows to avoid time-consuming manual processes, 
+                        created user-friendly apps to bring teams together and brainstorm ideas through simple 
+                        yet powerful automation.
+                    </p>
+                    
+                    <div class="project-stats">
+                        <strong>Impact:</strong> Saved hundreds of manual hours annually, improved approval 
+                        turnaround times, ensured accurate record-keeping, and increased staff satisfaction 
+                        through faster, more transparent processes.
+                    </div>
+
+                    <a href="images/projects/Power_platform_Project.png" target="_blank">
+                        <img src="images/projects/Power_platform_Project.png" alt="Power Platform Automation" class="project-image">
+                    </a>
+
+                    <p><strong>My Role:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>Built Power Apps forms for data collection</li>
+                        <li>Developed end-to-end automated flows in Power Automate</li>
+                        <li>Connected workflows to SharePoint for secure data storage</li>
+                        <li>Designed dashboards for real-time monitoring</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Power Apps</span>
+                        <span class="tech-tag">Power Automate</span>
+                        <span class="tech-tag">SharePoint Lists</span>
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">Azure Functions</span>
+                    </div>
+                </div>
+
+                <!-- Project 7: Windows 11 Migration -->
+                <div class="project-card">
+                    <div class="project-icon">💻</div>
+                    <h3>Windows 11 Enterprise Migration</h3>
+                    <p>
+                        Migrated 300+ users across Switzerland to Windows 11 Enterprise via Autopilot with 
+                        progressive rollout, achieving minimal downtime and streamlined post-migration 
+                        software deployment.
+                    </p>
+                    
+                    <div class="project-stats">
+                        <strong>Impact:</strong> Migrated 300+ devices with zero downtime, cut deployment 
+                        time to under 30 minutes, enabled remote software management, standardized the 
+                        environment for better security, and improved IT efficiency.
+                    </div>
+
+                    <a href="images/projects/Windows_11_project.png" target="_blank">
+                        <img src="images/projects/Windows_11_project.png" alt="Windows 11 Migration" class="project-image">
+                    </a>
+
+                    <p><strong>My Role:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
+                        <li>Prepared detailed migration and installation guides</li>
+                        <li>Performed installations and pre-migration testing</li>
+                        <li>Conducted IT staff training sessions</li>
+                        <li>Developed comprehensive KB articles</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Windows 11</span>
+                        <span class="tech-tag">Azure AD (Entra)</span>
+                        <span class="tech-tag">Microsoft Intune</span>
+                        <span class="tech-tag">Autopilot</span>
+                        <span class="tech-tag">SharePoint</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Project 2: Ticketing System -->
-            <div class="project-card">
-                <div class="project-icon">🎫</div>
-                <h3>Ticketing System Implementation & Knowledge Base</h3>
-                <p>
-                    Implemented the company's first structured ticketing system and created a Knowledge 
-                    Base to replace unorganized, email-based IT support, enabling both IT staff and users 
-                    to quickly find and track solutions.
-                </p>
-                
-                <div class="project-stats">
-                    <strong>Impact:</strong> Centralized IT support, improved communication, ensured ticket 
-                    traceability, reduced resolution times, and saved IT resources by enabling users to 
-                    self-resolve common issues.
-                </div>
-
-                <img src="images/ticketing_project.png" alt="Ticketing System" class="project-image">
-
-                <p><strong>My Role:</strong></p>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
-                    <li>Deployed and administered the ticketing system in SharePoint</li>
-                    <li>Created automated workflows and managed permissions</li>
-                    <li>Built a searchable Knowledge Base with step-by-step guides</li>
-                </ul>
-
-                <div class="tech-stack">
-                    <span class="tech-tag">SharePoint Online</span>
-                    <span class="tech-tag">Power Automate</span>
-                    <span class="tech-tag">Microsoft Forms</span>
-                    <span class="tech-tag">Video Tutorials</span>
-                </div>
-            </div>
-
-            <!-- Project 3: Power Platform Automation -->
-            <div class="project-card">
-                <div class="project-icon">⚡</div>
-                <h3>Power Platform Automation</h3>
-                <p>
-                    Designed and implemented automated workflows to avoid time-consuming manual processes, 
-                    created user-friendly apps to bring teams together and brainstorm ideas through simple 
-                    yet powerful automation.
-                </p>
-                
-                <div class="project-stats">
-                    <strong>Impact:</strong> Saved hundreds of manual hours annually, improved approval 
-                    turnaround times, ensured accurate record-keeping, and increased staff satisfaction 
-                    through faster, more transparent processes.
-                </div>
-
-                <img src="images/powerplatform_project.png" alt="Power Platform Automation" class="project-image">
-
-                <p><strong>My Role:</strong></p>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
-                    <li>Built Power Apps forms for data collection</li>
-                    <li>Developed end-to-end automated flows in Power Automate</li>
-                    <li>Connected workflows to SharePoint for secure data storage</li>
-                    <li>Designed dashboards for real-time monitoring</li>
-                </ul>
-
-                <div class="tech-stack">
-                    <span class="tech-tag">Power Apps</span>
-                    <span class="tech-tag">Power Automate</span>
-                    <span class="tech-tag">SharePoint Lists</span>
-                    <span class="tech-tag">Excel</span>
-                    <span class="tech-tag">Azure Functions</span>
-                </div>
-            </div>
-
-            <!-- Project 4: Windows 11 Migration -->
-            <div class="project-card">
-                <div class="project-icon">💻</div>
-                <h3>Windows 11 Enterprise Migration</h3>
-                <p>
-                    Migrated 300+ users across Switzerland to Windows 11 Enterprise via Autopilot with 
-                    progressive rollout, achieving minimal downtime and streamlined post-migration 
-                    software deployment.
-                </p>
-                
-                <div class="project-stats">
-                    <strong>Impact:</strong> Migrated 300+ devices with zero downtime, cut deployment 
-                    time to under 30 minutes, enabled remote software management, standardized the 
-                    environment for better security, and improved IT efficiency.
-                </div>
-
-                <img src="images/windows11_project.png" alt="Windows 11 Migration" class="project-image">
-
-                <p><strong>My Role:</strong></p>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--warm-brown); line-height: 1.8;">
-                    <li>Prepared detailed migration and installation guides</li>
-                    <li>Performed installations and pre-migration testing</li>
-                    <li>Conducted IT staff training sessions</li>
-                    <li>Developed comprehensive KB articles</li>
-                </ul>
-
-                <div class="tech-stack">
-                    <span class="tech-tag">Windows 11</span>
-                    <span class="tech-tag">Azure AD (Entra)</span>
-                    <span class="tech-tag">Microsoft Intune</span>
-                    <span class="tech-tag">Autopilot</span>
-                    <span class="tech-tag">SharePoint</span>
-                </div>
+            <!-- Navigation -->
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="prevBtn">‹</button>
+                <div class="carousel-dots" id="dots"></div>
+                <button class="carousel-btn" id="nextBtn">›</button>
             </div>
         </div>
     </section>
@@ -1032,7 +1239,7 @@
         <div class="contact-info">
             <div class="contact-item">
                 <div class="contact-item-icon">📧</div>
-                <a href="mailto:info@csoto.ch">info@csoto.ch</a>
+                <a href="/cdn-cgi/l/email-protection#86efe8e0e9c6e5f5e9f2e9a8e5ee"><span class="__cf_email__" data-cfemail="f69f989099b69585998299d8959e">[email&#160;protected]</span></a>
             </div>
             <div class="contact-item">
                 <div class="contact-item-icon">📱</div>
@@ -1051,12 +1258,68 @@
                 <a href="#contact">Contact</a>
             </div>
             <p class="footer-copyright">
-                © 2026 <a href="https://csoto.ch">csoto.ch</a> | Zürich, Switzerland
+                © 2026 <a href="https://csoto.ch">csoto.ch</a> | 🐴🛡️⚔️
             </p>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // CAROUSEL
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const cards = carousel.querySelectorAll('.project-card');
+        const totalCards = cards.length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots');
+
+        // Create dots
+        for (let i = 0; i < totalCards; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === totalCards - 1;
+        }
+
+        prevBtn.onclick = () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        };
+
+        nextBtn.onclick = () => {
+            if (currentIndex < totalCards - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        };
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        // Touch support
+        let startX = 0;
+        carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        carousel.addEventListener('touchend', e => {
+            const endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50 && currentIndex < totalCards - 1) currentIndex++;
+            if (endX - startX > 50 && currentIndex > 0) currentIndex--;
+            updateCarousel();
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1095,12 +1358,16 @@
         }, observerOptions);
 
         // Initially hide cards
-        document.querySelectorAll('.project-card, .skill-category, .testimonial-card').forEach((card, index) => {
+        document.querySelectorAll('.skill-category, .testimonial-card').forEach((card, index) => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = `all 0.6s ease ${index * 0.1}s`;
             observer.observe(card);
         });
+
+        // Initialize carousel
+        updateCarousel();
     </script>
 </body>
 </html>
+         
